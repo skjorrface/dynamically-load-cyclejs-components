@@ -8,7 +8,6 @@ const componentNames = [
   `checkbox`,
   `bmicalculator`,
 ]
-
 const randomComponentName = () => componentNames[
   Math.floor(Math.random() * componentNames.length)]
 
@@ -19,19 +18,18 @@ const drivers = {
 const loadComponent = (componentName, sources) =>
   most.fromPromise(
     System.import(`./components/${componentName}`)
-      .then(Component => Component.default(sources).DOM)
-  )
-  .chain(flattenPromise => flattenPromise)
+      .then(Component => Component.default(sources).DOM))
+  .chain(flattenToComponent => flattenToComponent)
 
 function main(sources) {
   const intent = () => sources.DOM.select(`.component-loader`).events(`click`)
   const model = intent$ => intent$
     .chain(() => most.combine(
-      (first, second) => div([first, second]),
+      (componentLoader, component) => div([componentLoader, component]),
       most.of(
         div([
           hr(),
-          h4(`Click the button below to dinamically load a random component`),
+          h4(`Click the button below to dynamically load a random component`),
           button(`.component-loader`, `Load component`),
           hr(),
           h5(`Random component:`),
@@ -43,7 +41,7 @@ function main(sources) {
   const view = model$ => model$.startWith(
     div([
       hr(),
-      h4(`Click the button below to dinamically load a random component`),
+      h4(`Click the button below to dynamically load a random component`),
       button(`.component-loader`, `Load component`),
       hr(),
       h5(`Random component:`),
