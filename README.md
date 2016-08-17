@@ -1,7 +1,7 @@
 # dynamically-load-cyclejs-components
 Repository showing how to dynamically load cyclejs components
 
-npm i
+npm i &&
 npm run build
 
 Go to dist and open index.html
