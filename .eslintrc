@@ -1,0 +1,15 @@
+{
+  "env": {
+    browser: true,
+    node: true,
+    es6: true,
+    },
+  "parser": "babel-eslint",
+  "extends": "eslint-config-cycle",
+  "plugins": ["cycle"],
+  "rules": {
+    "space-after-keywords": "off",
+    "space-return-throw-case": "off",
+    "keyword-spacing": "error"
+  }
+}
